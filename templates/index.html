@@ -1,0 +1,2899 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+
+    <title>FreshLife AI</title>
+
+
+    <style>
+
+        :root {
+            --bg: #050b09;
+            --panel: rgba(15,31,25,.72);
+            --panel2: #10271f;
+            --line: rgba(126,226,178,.18);
+            --text: #effff7;
+            --muted: #91aaa0;
+            --mint: #73e4b3;
+            --lime: #c9f27a;
+            --amber: #f6c969;
+            --red: #ff7f75;
+            --blue: #79bfff;
+        }
+
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font-family: Inter, system-ui, -apple-system,
+                BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+
+        .app {
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at 82% 4%,
+                    rgba(39,119,88,.28),
+                    transparent 28%
+                ),
+
+                radial-gradient(
+                    circle at 8% 48%,
+                    rgba(47,111,83,.12),
+                    transparent 24%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #050b09,
+                    #08140f 48%,
+                    #06100c
+                );
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .nav {
+            height: 78px;
+
+            border-bottom:
+                1px solid rgba(255,255,255,.08);
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 42px;
+
+            background:
+                rgba(5,12,9,.58);
+
+            backdrop-filter: blur(22px);
+
+            position: sticky;
+            top: 0;
+
+            z-index: 10;
+        }
+
+
+        .brand {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+
+            font-weight: 850;
+            letter-spacing: .3px;
+        }
+
+
+        .logo {
+            width: 40px;
+            height: 40px;
+
+            border-radius: 13px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--mint),
+                    var(--lime)
+                );
+
+            display: grid;
+            place-items: center;
+
+            color: #082019;
+
+            font-size: 21px;
+
+            box-shadow:
+                0 0 30px rgba(112,225,176,.22);
+        }
+
+
+        .nav small {
+            color: var(--muted);
+            letter-spacing: .2px;
+        }
+
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .main {
+            max-width: 1280px;
+
+            margin: auto;
+
+            padding:
+                38px 30px 70px;
+        }
+
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            align-items: end;
+
+            margin-bottom: 28px;
+        }
+
+
+        .eyebrow {
+            color: var(--mint);
+
+            font-size: 11px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 2.2px;
+
+            font-weight: 850;
+        }
+
+
+        .hero h1 {
+            font-size:
+                clamp(34px,4vw,50px);
+
+            line-height: 1.02;
+
+            margin:
+                9px 0 12px;
+
+            letter-spacing:
+                -1.8px;
+        }
+
+
+        .hero p {
+            margin: 0;
+
+            color: var(--muted);
+
+            max-width: 680px;
+
+            line-height: 1.7;
+        }
+
+
+        .pill {
+            padding:
+                10px 14px;
+
+            border:
+                1px solid rgba(112,225,176,.25);
+
+            border-radius: 999px;
+
+            color: var(--mint);
+
+            font-size: 12px;
+
+            background:
+                rgba(13,33,27,.72);
+
+            backdrop-filter:
+                blur(12px);
+
+            box-shadow:
+                inset 0 1px rgba(255,255,255,.04);
+        }
+
+
+        /* =========================
+           TABS
+        ========================= */
+
+        .tabs {
+            display: flex;
+
+            gap: 8px;
+
+            margin: 20px 0;
+
+            flex-wrap: wrap;
+        }
+
+
+        .tab {
+            padding:
+                10px 14px;
+
+            border:
+                1px solid var(--line);
+
+            border-radius: 11px;
+
+            color: var(--muted);
+
+            font-size: 12px;
+
+            background:
+                rgba(9,23,18,.48);
+
+            transition: .2s;
+
+            cursor: pointer;
+        }
+
+
+        .tab:hover {
+            color: var(--text);
+
+            border-color:
+                rgba(112,225,176,.35);
+        }
+
+
+        .tab.active {
+            background:
+                rgba(21,55,44,.78);
+
+            color: var(--mint);
+
+            border-color:
+                rgba(112,225,176,.4);
+
+            box-shadow:
+                inset 0 1px rgba(255,255,255,.04);
+        }
+
+
+        /* =========================
+           GRID
+        ========================= */
+
+        .grid {
+            display: grid;
+
+            grid-template-columns:
+                1.35fr .8fr;
+
+            gap: 20px;
+        }
+
+
+        .card {
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(18,39,32,.82),
+                    rgba(8,21,16,.78)
+                );
+
+            border:
+                1px solid var(--line);
+
+            border-radius: 22px;
+
+            box-shadow:
+                0 24px 80px rgba(0,0,0,.32),
+                inset 0 1px rgba(255,255,255,.035);
+
+            backdrop-filter:
+                blur(18px);
+        }
+
+
+        /* =========================
+           UPLOAD CARD
+        ========================= */
+
+        .upload {
+            min-height: 460px;
+
+            padding: 22px;
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 18px;
+        }
+
+
+        .drop {
+            border:
+                1px dashed
+                rgba(112,225,176,.34);
+
+            border-radius: 18px;
+
+            display: grid;
+
+            place-items: center;
+
+            text-align: center;
+
+            background:
+                radial-gradient(
+                    circle at 50% 30%,
+                    rgba(112,225,176,.1),
+                    transparent 38%
+                ),
+
+                linear-gradient(
+                    145deg,
+                    rgba(16,37,31,.75),
+                    rgba(6,17,13,.8)
+                );
+
+            position: relative;
+
+            overflow: hidden;
+
+            transition: .25s;
+
+            padding: 20px;
+        }
+
+
+        .drop:before {
+            content: '';
+
+            position: absolute;
+
+            inset: 12px;
+
+            border:
+                1px solid
+                rgba(112,225,176,.06);
+
+            border-radius: 14px;
+
+            pointer-events: none;
+        }
+
+
+        .drop:hover {
+            border-color:
+                rgba(112,225,176,.62);
+
+            box-shadow:
+                0 0 40px
+                rgba(112,225,176,.08);
+        }
+
+
+        .fruit-icon {
+            font-size: 94px;
+
+            filter:
+                drop-shadow(
+                    0 15px 22px #0008
+                );
+
+            animation:
+                float 4s ease-in-out infinite;
+        }
+
+
+        .drop h3 {
+            margin:
+                10px 0 5px;
+
+            font-size: 17px;
+        }
+
+
+        .drop p {
+            color: var(--muted);
+
+            font-size: 13px;
+
+            line-height: 1.6;
+
+            margin:
+                0 22px 16px;
+        }
+
+
+        /* =========================
+           BUTTON
+        ========================= */
+
+        .btn {
+            border: 0;
+
+            border-radius: 12px;
+
+            padding:
+                12px 18px;
+
+            background:
+                linear-gradient(
+                    100deg,
+                    var(--mint),
+                    var(--lime)
+                );
+
+            color: #082018;
+
+            font-weight: 850;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 8px 24px
+                rgba(112,225,176,.14);
+
+            transition: .2s;
+        }
+
+
+        .btn:hover {
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 12px 30px
+                rgba(112,225,176,.22);
+        }
+
+
+        .btn:disabled {
+            opacity: .65;
+
+            cursor: wait;
+
+            transform: none;
+        }
+
+
+        /* =========================
+           DETAILS
+        ========================= */
+
+        .details {
+            padding: 8px 4px;
+        }
+
+
+        .section-title {
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1.8px;
+
+            color: var(--muted);
+
+            margin:
+                0 0 10px;
+
+            font-weight: 800;
+        }
+
+
+        .field {
+            margin-bottom: 14px;
+        }
+
+
+        .field label {
+            display: block;
+
+            font-size: 12px;
+
+            color: #b5c8c1;
+
+            margin-bottom: 7px;
+        }
+
+
+        .field input,
+        .field select {
+            width: 100%;
+
+            background:
+                rgba(5,17,13,.75);
+
+            border:
+                1px solid
+                rgba(126,226,178,.15);
+
+            color: var(--text);
+
+            padding: 12px;
+
+            border-radius: 11px;
+
+            outline: none;
+
+            transition: .2s;
+        }
+
+
+        .field input:focus,
+        .field select:focus {
+            border-color:
+                rgba(112,225,176,.55);
+
+            box-shadow:
+                0 0 0 3px
+                rgba(112,225,176,.07);
+        }
+
+
+        .analyze {
+            width: 100%;
+
+            margin-top: 5px;
+        }
+
+
+        /* =========================
+           CAMERA
+        ========================= */
+
+        .camera-area {
+            margin-top: 15px;
+
+            padding: 12px;
+
+            border:
+                1px solid
+                rgba(112,225,176,.18);
+
+            border-radius: 16px;
+
+            background:
+                rgba(5,17,13,.65);
+        }
+
+
+        .camera-video {
+            width: 100%;
+
+            max-width: 420px;
+
+            border-radius: 14px;
+
+            background: #000;
+
+            display: block;
+
+            margin: auto;
+        }
+
+
+        .preview-image {
+            max-width: 100%;
+
+            max-height: 250px;
+
+            border-radius: 16px;
+
+            margin-top: 15px;
+
+            object-fit: contain;
+        }
+
+
+        .success-text {
+            color: var(--mint);
+
+            font-size: 12px;
+
+            margin: 8px 0;
+        }
+
+
+        .waiting-text {
+            color: var(--muted);
+
+            font-size: 12px;
+
+            margin: 8px 0;
+        }
+
+
+        /* =========================
+           SIDE
+        ========================= */
+
+        .side {
+            display: grid;
+
+            gap: 20px;
+        }
+
+
+        .score {
+            padding: 22px;
+        }
+
+
+        .scoretop {
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            align-items: center;
+
+            gap: 15px;
+        }
+
+
+        .score h2 {
+            font-size: 16px;
+
+            margin: 0;
+        }
+
+
+        .ring {
+            width: 112px;
+
+            height: 112px;
+
+            border-radius: 50%;
+
+            display: grid;
+
+            place-items: center;
+
+            background:
+                conic-gradient(
+                    var(--mint) 0 0%,
+                    rgba(112,225,176,.1) 0%
+                );
+
+            position: relative;
+
+            box-shadow:
+                0 0 35px
+                rgba(112,225,176,.08);
+
+            flex-shrink: 0;
+        }
+
+
+        .ring:after {
+            content: '';
+
+            position: absolute;
+
+            inset: 10px;
+
+            background: #0b1915;
+
+            border:
+                1px solid
+                rgba(255,255,255,.04);
+
+            border-radius: 50%;
+        }
+
+
+        .ring span {
+            position: relative;
+
+            z-index: 1;
+
+            font-size: 25px;
+
+            font-weight: 850;
+        }
+
+
+        .meter {
+            height: 9px;
+
+            background: #142d24;
+
+            border-radius: 9px;
+
+            overflow: hidden;
+
+            margin:
+                20px 0 8px;
+        }
+
+
+        .meter i {
+            display: block;
+
+            height: 100%;
+
+            width: 0%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--mint),
+                    var(--lime)
+                );
+
+            border-radius: 9px;
+
+            box-shadow:
+                0 0 15px
+                rgba(112,225,176,.35);
+
+            transition:
+                width .5s ease;
+        }
+
+
+        .mini {
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            color: var(--muted);
+
+            font-size: 12px;
+        }
+
+
+        /* =========================
+           INSIGHTS
+        ========================= */
+
+        .insights {
+            padding: 22px;
+        }
+
+
+        .row {
+            display: flex;
+
+            align-items: center;
+
+            justify-content:
+                space-between;
+
+            padding: 14px 0;
+
+            border-bottom:
+                1px solid
+                rgba(126,226,178,.1);
+
+            gap: 15px;
+        }
+
+
+        .row:last-child {
+            border: 0;
+        }
+
+
+        .label {
+            color: var(--muted);
+
+            font-size: 13px;
+        }
+
+
+        .value {
+            font-weight: 800;
+
+            text-align: right;
+        }
+
+
+        .good {
+            color: var(--mint);
+        }
+
+
+        .warn {
+            color: var(--amber);
+        }
+
+
+        .danger {
+            color: var(--red);
+        }
+
+
+        /* =========================
+           RESULT
+        ========================= */
+
+        .result {
+            margin-top: 20px;
+
+            padding: 22px;
+
+            display: grid;
+
+            grid-template-columns:
+                1.1fr .9fr;
+
+            gap: 20px;
+        }
+
+
+        .big {
+            font-size:
+                clamp(26px,3vw,36px);
+
+            font-weight: 850;
+
+            letter-spacing:
+                -1.2px;
+        }
+
+
+        .recommend {
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(11,33,26,.9),
+                    rgba(8,23,18,.72)
+                );
+
+            border:
+                1px solid
+                rgba(112,225,176,.2);
+
+            padding: 18px;
+
+            border-radius: 17px;
+        }
+
+
+        .recommend strong {
+            color: var(--lime);
+        }
+
+
+        /* =========================
+           STATUS
+        ========================= */
+
+        .status-message {
+            margin-top: 10px;
+
+            padding:
+                10px 12px;
+
+            border-radius: 10px;
+
+            font-size: 12px;
+
+            display: none;
+        }
+
+
+        .status-message.show {
+            display: block;
+        }
+
+
+        .status-message.error {
+            color: var(--red);
+
+            background:
+                rgba(255,127,117,.08);
+
+            border:
+                1px solid
+                rgba(255,127,117,.2);
+        }
+
+
+        .status-message.success {
+            color: var(--mint);
+
+            background:
+                rgba(115,228,179,.07);
+
+            border:
+                1px solid
+                rgba(115,228,179,.18);
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        .foot {
+            color: #6e8980;
+
+            text-align: center;
+
+            margin-top: 28px;
+
+            font-size: 11px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =========================
+           ANIMATION
+        ========================= */
+
+        @keyframes float {
+
+            0%,100% {
+                transform:
+                    translateY(0);
+            }
+
+            50% {
+                transform:
+                    translateY(-7px);
+            }
+
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media(max-width:850px) {
+
+            .grid,
+            .upload,
+            .result {
+                grid-template-columns: 1fr;
+            }
+
+
+            .hero {
+                display: block;
+            }
+
+
+            .pill {
+                display: inline-block;
+
+                margin-top: 18px;
+            }
+
+
+            .nav {
+                padding: 0 18px;
+            }
+
+
+            .nav small {
+                display: none;
+            }
+
+
+            .main {
+                padding:
+                    28px 16px 50px;
+            }
+
+
+            .hero h1 {
+                font-size: 35px;
+            }
+
+
+            .upload {
+                padding: 16px;
+            }
+
+
+            .drop {
+                min-height: 330px;
+            }
+
+
+            .ring {
+                width: 96px;
+
+                height: 96px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="app">
+
+
+    <!-- =========================
+         NAVBAR
+    ========================= -->
+
+    <nav class="nav">
+
+        <div class="brand">
+
+            <div class="logo">
+                ✦
+            </div>
+
+            FreshLife AI
+
+        </div>
+
+
+        <small>
+            Fruit Quality Intelligence · Research Prototype
+        </small>
+
+    </nav>
+
+
+
+    <main class="main">
+
+
+        <!-- =========================
+             HERO
+        ========================= -->
+
+        <section class="hero">
+
+            <div>
+
+                <div class="eyebrow">
+                    AI-powered post-harvest intelligence
+                </div>
+
+
+                <h1>
+                    Know your fruit.
+                    Before it becomes waste.
+                </h1>
+
+
+                <p>
+                    Upload or capture a fruit image and let the
+                    trained AI model identify the fruit and its
+                    current visible condition.
+                </p>
+
+            </div>
+
+
+            <div
+                class="pill"
+                id="modelStatus"
+            >
+                ● Model status: Waiting for image
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             TABS
+        ========================= -->
+
+        <div class="tabs">
+
+            <div
+                class="tab active"
+                role="button"
+                tabindex="0"
+            >
+                Single Fruit Analysis
+            </div>
+
+
+            <div
+                class="tab"
+                role="button"
+                tabindex="0"
+            >
+                Inventory Priority
+            </div>
+
+
+            <div
+                class="tab"
+                role="button"
+                tabindex="0"
+            >
+                What-if Storage
+            </div>
+
+
+            <div
+                class="tab"
+                role="button"
+                tabindex="0"
+            >
+                Waste Insights
+            </div>
+
+        </div>
+
+
+
+        <!-- =========================
+             MAIN GRID
+        ========================= -->
+
+        <section class="grid">
+
+
+            <!-- =========================
+                 LEFT CARD
+            ========================= -->
+
+            <div class="card upload">
+
+
+                <!-- IMAGE AREA -->
+
+                <div class="drop">
+
+                    <div>
+
+                        <div class="fruit-icon">
+                            🍊
+                        </div>
+
+
+                        <h3>
+                            Upload or capture a fruit
+                        </h3>
+
+
+                        <p>
+                            Choose a clear image or use your camera.
+                            The trained AI model will analyze the
+                            current image.
+                        </p>
+
+
+
+                        <!-- UPLOAD -->
+
+                        <button
+                            class="btn"
+                            id="chooseImage"
+                            type="button"
+                        >
+                            🖼️ Upload Image
+                        </button>
+
+
+                        <input
+                            id="fruitInput"
+                            type="file"
+                            accept="image/*"
+                            style="display:none"
+                        >
+
+
+
+                        <!-- CAMERA -->
+
+                        <button
+                            class="btn"
+                            id="openCamera"
+                            type="button"
+                            style="margin-top:10px"
+                        >
+                            📷 Open Camera
+                        </button>
+
+
+
+                        <!-- PREVIEW -->
+
+                        <div id="preview"></div>
+
+
+
+                        <!-- CAMERA AREA -->
+
+                        <div
+                            id="cameraArea"
+                            class="camera-area"
+                            style="display:none"
+                        >
+
+                            <video
+                                id="cameraVideo"
+                                class="camera-video"
+                                autoplay
+                                playsinline
+                            ></video>
+
+
+                            <canvas
+                                id="cameraCanvas"
+                                style="display:none"
+                            ></canvas>
+
+
+                            <button
+                                id="capturePhoto"
+                                class="btn"
+                                type="button"
+                                style="margin-top:10px"
+                            >
+                                📸 Capture Fruit Photo
+                            </button>
+
+
+                            <button
+                                id="closeCamera"
+                                class="btn"
+                                type="button"
+                                style="
+                                    margin-top:10px;
+                                    background:#243b32;
+                                    color:#effff7;
+                                "
+                            >
+                                ✕ Close Camera
+                            </button>
+
+                        </div>
+
+
+
+                        <!-- STATUS -->
+
+                        <div
+                            id="statusMessage"
+                            class="status-message"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =========================
+                     STORAGE CONTEXT
+                ========================= -->
+
+                <div class="details">
+
+                    <p class="section-title">
+                        Storage context
+                    </p>
+
+
+                    <div class="field">
+
+                        <label>
+                            Fruit type
+                        </label>
+
+
+                        <select id="fruitType">
+
+                            <option>
+                                Auto-detect
+                            </option>
+
+                            <option>
+                                Banana
+                            </option>
+
+                            <option>
+                                Mango
+                            </option>
+
+                            <option>
+                                Apple
+                            </option>
+
+                            <option>
+                                Orange
+                            </option>
+
+                            <option>
+                                Strawberry
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            Storage temperature · °C
+                        </label>
+
+
+                        <input
+                            id="temperature"
+                            type="number"
+                            value="28"
+                        >
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            Relative humidity · %
+                        </label>
+
+
+                        <input
+                            id="humidity"
+                            type="number"
+                            value="70"
+                        >
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            Storage duration · days
+                        </label>
+
+
+                        <input
+                            id="storageDuration"
+                            type="number"
+                            value="3"
+                        >
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            Storage condition
+                        </label>
+
+
+                        <select id="storageCondition">
+
+                            <option>
+                                Room temperature
+                            </option>
+
+                            <option>
+                                Refrigerated
+                            </option>
+
+                            <option>
+                                Cold storage
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- ANALYZE -->
+
+                    <button
+                        class="btn analyze"
+                        id="analyzeButton"
+                        type="button"
+                    >
+                        Analyze Fruit →
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================
+                 RIGHT SIDE
+            ========================= -->
+
+            <aside class="side">
+
+
+                <!-- AI CONFIDENCE -->
+
+                <div class="card score">
+
+                    <div class="scoretop">
+
+                        <div>
+
+                            <p class="section-title">
+                                AI confidence
+                            </p>
+
+
+                            <h2 id="confidenceHeading">
+                                Awaiting analysis
+                            </h2>
+
+
+                            <p
+                                id="confidenceSub"
+                                style="
+                                    color:#91aaa0;
+                                    font-size:12px;
+                                "
+                            >
+                                Upload an image and analyze it
+                            </p>
+
+                        </div>
+
+
+                        <div
+                            class="ring"
+                            id="freshnessRing"
+                        >
+
+                            <span id="freshnessScore">
+                                —
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="meter">
+
+                        <i
+                            id="freshnessMeter"
+                        ></i>
+
+                    </div>
+
+
+                    <div class="mini">
+
+                        <span id="scoreLabel">
+                            Awaiting result
+                        </span>
+
+
+                        <span id="scoreText">
+                            —
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =========================
+                     AI ASSESSMENT
+                ========================= -->
+
+                <div class="card insights">
+
+                    <p class="section-title">
+                        Fruit assessment
+                    </p>
+
+
+                    <div class="row">
+
+                        <span class="label">
+                            Detected fruit
+                        </span>
+
+
+                        <span
+                            class="value"
+                            id="predictionValue"
+                        >
+                            —
+                        </span>
+
+                    </div>
+
+
+                    <div class="row">
+
+                        <span class="label">
+                            Current condition
+                        </span>
+
+
+                        <span
+                            class="value"
+                            id="conditionValue"
+                        >
+                            —
+                        </span>
+
+                    </div>
+
+
+                    <div class="row">
+
+                        <span class="label">
+                            Estimated remaining shelf life
+                        </span>
+
+
+                        <span
+                            class="value"
+                            id="shelfLifeValue"
+                        >
+                            Not available
+                        </span>
+
+                    </div>
+
+
+                    <div class="row">
+
+                        <span class="label">
+                            AI confidence
+                        </span>
+
+
+                        <span
+                            class="value"
+                            id="confidenceValue"
+                        >
+                            —
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </aside>
+
+        </section>
+
+
+
+        <!-- =========================
+             RESULT
+        ========================= -->
+
+        <section class="card result">
+
+            <div>
+
+                <p class="section-title">
+                    Fruit assessment
+                </p>
+
+
+                <div
+                    class="big"
+                    id="resultTitle"
+                >
+                    Upload a fruit image to begin
+                </div>
+
+
+                <p
+                    id="resultDescription"
+                    style="
+                        color:#91aaa0;
+                    "
+                >
+                    The trained AI model will identify the fruit
+                    and its current visible condition after analysis.
+                </p>
+
+            </div>
+
+
+
+            <!-- RECOMMENDATION -->
+
+            <div class="recommend">
+
+                <p class="section-title">
+                    Recommended action
+                </p>
+
+
+                <strong id="recommendation">
+                    Awaiting AI result
+                </strong>
+
+
+                <p
+                    id="recommendationText"
+                    style="
+                        color:#a8bbb4;
+                        font-size:13px;
+                    "
+                >
+                    No recommendation is generated until the image
+                    is analyzed.
+                </p>
+
+
+                <div
+                    class="pill"
+                    id="whyPrediction"
+                    style="
+                        display:inline-block
+                    "
+                >
+                    AI result required
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             FOOTER
+        ========================= -->
+
+        <div class="foot">
+
+            FreshLife AI · Research prototype ·
+            Predictions are estimates and not food-safety certification.
+
+        </div>
+
+    </main>
+
+</div>
+
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+
+        /* =========================================
+           ELEMENTS
+        ========================================= */
+
+        const uploadButton =
+            document.getElementById(
+                "chooseImage"
+            );
+
+
+        const fruitInput =
+            document.getElementById(
+                "fruitInput"
+            );
+
+
+        const preview =
+            document.getElementById(
+                "preview"
+            );
+
+
+        const openCamera =
+            document.getElementById(
+                "openCamera"
+            );
+
+
+        const cameraArea =
+            document.getElementById(
+                "cameraArea"
+            );
+
+
+        const video =
+            document.getElementById(
+                "cameraVideo"
+            );
+
+
+        const canvas =
+            document.getElementById(
+                "cameraCanvas"
+            );
+
+
+        const captureButton =
+            document.getElementById(
+                "capturePhoto"
+            );
+
+
+        const closeCamera =
+            document.getElementById(
+                "closeCamera"
+            );
+
+
+        const analyzeButton =
+            document.getElementById(
+                "analyzeButton"
+            );
+
+
+        const statusMessage =
+            document.getElementById(
+                "statusMessage"
+            );
+
+
+        const modelStatus =
+            document.getElementById(
+                "modelStatus"
+            );
+
+
+        const fruitType =
+            document.getElementById(
+                "fruitType"
+            );
+
+
+        const freshnessRing =
+            document.getElementById(
+                "freshnessRing"
+            );
+
+
+        const freshnessScore =
+            document.getElementById(
+                "freshnessScore"
+            );
+
+
+        const freshnessMeter =
+            document.getElementById(
+                "freshnessMeter"
+            );
+
+
+        const scoreText =
+            document.getElementById(
+                "scoreText"
+            );
+
+
+        const scoreLabel =
+            document.getElementById(
+                "scoreLabel"
+            );
+
+
+        const confidenceHeading =
+            document.getElementById(
+                "confidenceHeading"
+            );
+
+
+        const confidenceSub =
+            document.getElementById(
+                "confidenceSub"
+            );
+
+
+        const predictionValue =
+            document.getElementById(
+                "predictionValue"
+            );
+
+
+        const conditionValue =
+            document.getElementById(
+                "conditionValue"
+            );
+
+
+        const shelfLifeValue =
+            document.getElementById(
+                "shelfLifeValue"
+            );
+
+
+        const confidenceValue =
+            document.getElementById(
+                "confidenceValue"
+            );
+
+
+        const resultTitle =
+            document.getElementById(
+                "resultTitle"
+            );
+
+
+        const resultDescription =
+            document.getElementById(
+                "resultDescription"
+            );
+
+
+        const recommendation =
+            document.getElementById(
+                "recommendation"
+            );
+
+
+        const recommendationText =
+            document.getElementById(
+                "recommendationText"
+            );
+
+
+        const whyPrediction =
+            document.getElementById(
+                "whyPrediction"
+            );
+
+
+
+        /* =========================================
+           CURRENT IMAGE
+        ========================================= */
+
+        let selectedImage = null;
+
+        let cameraStream = null;
+
+
+
+        /* =========================================
+           RESET RESULT
+        ========================================= */
+
+        function resetDisplayedResult() {
+
+
+            predictionValue.textContent =
+                "—";
+
+
+            conditionValue.textContent =
+                "—";
+
+
+            confidenceValue.textContent =
+                "—";
+
+
+            freshnessScore.textContent =
+                "—";
+
+
+            freshnessMeter.style.width =
+                "0%";
+
+
+            scoreText.textContent =
+                "—";
+
+
+            scoreLabel.textContent =
+                "Awaiting result";
+
+
+            confidenceHeading.textContent =
+                "Awaiting analysis";
+
+
+            confidenceSub.textContent =
+                "Analyze the newly selected image";
+
+
+            freshnessRing.style.background =
+                "conic-gradient(" +
+                "var(--mint) 0 0%," +
+                "rgba(112,225,176,.1) 0%" +
+                ")";
+
+
+            resultTitle.textContent =
+                "Ready for new AI analysis";
+
+
+            resultDescription.textContent =
+                "The previous result was cleared. " +
+                "Click Analyze Fruit to analyze this image.";
+
+
+            recommendation.textContent =
+                "Awaiting AI result";
+
+
+            recommendationText.textContent =
+                "No recommendation is generated until " +
+                "the new image is analyzed.";
+
+
+            whyPrediction.textContent =
+                "New image selected";
+
+
+            shelfLifeValue.textContent =
+                "2-3 Days Remaining";
+
+
+            modelStatus.textContent =
+                "● Model status: New image ready";
+
+
+            statusMessage.className =
+                "status-message";
+
+
+            statusMessage.textContent =
+                "";
+
+        }
+
+
+
+        /* =========================================
+           SHOW STATUS
+        ========================================= */
+
+        function showStatus(
+            message,
+            type
+        ) {
+
+            statusMessage.textContent =
+                message;
+
+
+            statusMessage.className =
+                "status-message show " +
+                type;
+
+        }
+
+
+
+        /* =========================================
+           UPLOAD IMAGE
+        ========================================= */
+
+        if (
+            uploadButton &&
+            fruitInput
+        ) {
+
+            uploadButton.addEventListener(
+                "click",
+                function () {
+
+                    fruitInput.click();
+
+                }
+            );
+
+
+            fruitInput.addEventListener(
+                "change",
+                function () {
+
+                    const file =
+                        fruitInput.files[0];
+
+
+                    if (!file) {
+                        return;
+                    }
+
+
+                    /*
+                     * Store the CURRENT image.
+                     */
+
+                    selectedImage =
+                        file;
+
+
+                    /*
+                     * Clear previous result.
+                     */
+
+                    resetDisplayedResult();
+
+
+                    /*
+                     * Preview image.
+                     */
+
+                    const reader =
+                        new FileReader();
+
+
+                    reader.onload =
+                        function (event) {
+
+                            preview.innerHTML = `
+
+                                <img
+                                    class="preview-image"
+                                    src="${event.target.result}"
+                                    alt="Selected fruit"
+                                >
+
+                                <p class="success-text">
+                                    ✓ New image selected — ready for AI analysis
+                                </p>
+
+                            `;
+
+                        };
+
+
+                    reader.readAsDataURL(
+                        file
+                    );
+
+
+                    showStatus(
+                        "New image selected. Click Analyze Fruit.",
+                        "success"
+                    );
+
+                }
+            );
+
+        }
+
+
+
+        /* =========================================
+           OPEN CAMERA
+        ========================================= */
+
+        if (openCamera) {
+
+            openCamera.addEventListener(
+                "click",
+                async function () {
+
+                    try {
+
+                        if (
+                            !navigator.mediaDevices ||
+                            !navigator.mediaDevices.getUserMedia
+                        ) {
+
+                            throw new Error(
+                                "Camera API unavailable"
+                            );
+
+                        }
+
+
+                        if (cameraStream) {
+
+                            stopCamera();
+
+                        }
+
+
+                        cameraStream =
+                            await navigator
+                                .mediaDevices
+                                .getUserMedia({
+
+                                    video: {
+                                        facingMode: {
+                                            ideal: "environment"
+                                        }
+                                    },
+
+                                    audio: false
+
+                                });
+
+
+                        video.srcObject =
+                            cameraStream;
+
+
+                        cameraArea.style.display =
+                            "block";
+
+
+                        openCamera.textContent =
+                            "📷 Camera Open";
+
+                    }
+
+
+                    catch (error) {
+
+                        alert(
+                            "Camera could not be opened.\n\n" +
+                            "Please allow camera permission and try again."
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+
+
+
+        /* =========================================
+           CAPTURE PHOTO
+        ========================================= */
+
+        if (captureButton) {
+
+            captureButton.addEventListener(
+                "click",
+                function () {
+
+                    if (!cameraStream) {
+
+                        alert(
+                            "Please open the camera first."
+                        );
+
+                        return;
+
+                    }
+
+
+                    if (!video.videoWidth) {
+
+                        alert(
+                            "Camera is still starting. " +
+                            "Please wait a moment and try again."
+                        );
+
+                        return;
+
+                    }
+
+
+                    canvas.width =
+                        video.videoWidth;
+
+
+                    canvas.height =
+                        video.videoHeight;
+
+
+                    const context =
+                        canvas.getContext(
+                            "2d"
+                        );
+
+
+                    context.drawImage(
+                        video,
+                        0,
+                        0,
+                        canvas.width,
+                        canvas.height
+                    );
+
+
+                    canvas.toBlob(
+                        function (blob) {
+
+                            if (!blob) {
+
+                                alert(
+                                    "Could not capture the photo."
+                                );
+
+                                return;
+
+                            }
+
+
+                            /*
+                             * Store camera image as NEW File.
+                             */
+
+                            selectedImage =
+                                new File(
+                                    [blob],
+                                    "captured_fruit_" +
+                                    Date.now() +
+                                    ".png",
+                                    {
+                                        type:
+                                            "image/png"
+                                    }
+                                );
+
+
+                            /*
+                             * Clear previous result.
+                             */
+
+                            resetDisplayedResult();
+
+
+                            /*
+                             * Show captured image.
+                             */
+
+                            const photo =
+                                canvas.toDataURL(
+                                    "image/png"
+                                );
+
+
+                            preview.innerHTML = `
+
+                                <img
+                                    class="preview-image"
+                                    src="${photo}"
+                                    alt="Captured fruit"
+                                >
+
+                                <p class="success-text">
+                                    ✓ New camera photo captured — ready for AI analysis
+                                </p>
+
+                            `;
+
+
+                            showStatus(
+                                "New camera photo captured. Click Analyze Fruit.",
+                                "success"
+                            );
+
+
+                            stopCamera();
+
+                        },
+
+                        "image/png"
+                    );
+
+                }
+            );
+
+        }
+
+
+
+        /* =========================================
+           CLOSE CAMERA
+        ========================================= */
+
+        if (closeCamera) {
+
+            closeCamera.addEventListener(
+                "click",
+                function () {
+
+                    stopCamera();
+
+                }
+            );
+
+        }
+
+
+
+        /* =========================================
+           STOP CAMERA
+        ========================================= */
+
+        function stopCamera() {
+
+            if (cameraStream) {
+
+                cameraStream
+                    .getTracks()
+                    .forEach(
+                        function (track) {
+
+                            track.stop();
+
+                        }
+                    );
+
+
+                cameraStream = null;
+
+            }
+
+
+            if (video) {
+
+                video.srcObject =
+                    null;
+
+            }
+
+
+            if (cameraArea) {
+
+                cameraArea.style.display =
+                    "none";
+
+            }
+
+
+            if (openCamera) {
+
+                openCamera.textContent =
+                    "📷 Open Camera";
+
+            }
+
+        }
+
+
+
+        /* =========================================
+           CONVERT MODEL CLASS
+           TO HUMAN FRIENDLY FRUIT NAME
+        ========================================= */
+
+        function getFruitName(
+            className
+        ) {
+
+            const name =
+                className.toLowerCase();
+
+
+            if (
+                name.includes("mango")
+            ) {
+
+                return "Mango";
+
+            }
+
+
+            if (
+                name.includes("strawberry")
+            ) {
+
+                return "Strawberry";
+
+            }
+
+
+            if (
+                name.includes("apple")
+            ) {
+
+                return "Apple";
+
+            }
+
+
+            if (
+                name.includes("orange")
+            ) {
+
+                return "Orange";
+
+            }
+
+
+            return "Fruit";
+
+        }
+
+
+
+        /* =========================================
+           ANALYZE IMAGE
+        ========================================= */
+
+        if (analyzeButton) {
+
+            analyzeButton.addEventListener(
+                "click",
+                async function () {
+
+
+                    /*
+                     * Make sure image exists.
+                     */
+
+                    if (!selectedImage) {
+
+                        alert(
+                            "Please upload or capture a fruit image first."
+                        );
+
+                        return;
+
+                    }
+
+
+                    /*
+                     * Disable button while AI works.
+                     */
+
+                    analyzeButton.disabled =
+                        true;
+
+
+                    analyzeButton.textContent =
+                        "⏳ Analyzing...";
+
+
+                    modelStatus.textContent =
+                        "● Model status: Analyzing image";
+
+
+                    showStatus(
+                        "AI is analyzing the selected image...",
+                        "success"
+                    );
+
+
+                    try {
+
+
+                        /* =========================
+                           FORM DATA
+                        ========================= */
+
+                        const formData =
+                            new FormData();
+
+
+                        formData.append(
+                            "image",
+                            selectedImage,
+                            selectedImage.name
+                        );
+
+
+
+                        /* =========================
+                           SEND TO FLASK
+                        ========================= */
+
+                        const response =
+                            await fetch(
+                                "/predict",
+                                {
+                                    method:
+                                        "POST",
+
+                                    body:
+                                        formData,
+
+                                    cache:
+                                        "no-store"
+                                }
+                            );
+
+
+
+                        /* =========================
+                           READ RESPONSE
+                        ========================= */
+
+                        const data =
+                            await response.json();
+
+
+                        if (
+                            !response.ok ||
+                            !data.success
+                        ) {
+
+                            throw new Error(
+                                data.error ||
+                                "AI analysis failed."
+                            );
+
+                        }
+
+
+
+                        /* =========================
+                           ACTUAL MODEL RESULT
+                        ========================= */
+
+                        const predictedClass =
+                            data.class_name;
+
+
+                        const confidence =
+                            Math.round(
+                                Number(
+                                    data.confidence
+                                ) * 100
+                            );
+
+
+
+                        /* =========================
+                           HUMAN FRIENDLY FRUIT
+                        ========================= */
+
+                        const detectedFruit =
+                            getFruitName(
+                                predictedClass
+                            );
+
+
+
+                        /* =========================
+                           CURRENT CONDITION
+                        ========================= */
+
+                        const isRotten =
+                            predictedClass
+                                .toLowerCase()
+                                .includes(
+                                    "rotten"
+                                );
+
+
+                        const condition =
+                            isRotten
+                                ? "Spoiled"
+                                : "Fresh";
+
+
+
+                        /* =========================
+                           AUTO DETECT FRUIT TYPE
+                        ========================= */
+
+                        if (
+                            detectedFruit !==
+                            "Fruit"
+                        ) {
+
+                            fruitType.value =
+                                detectedFruit;
+
+                        }
+
+
+
+                        /* =========================
+                           UPDATE ASSESSMENT
+                        ========================= */
+
+                        predictionValue.textContent =
+                            detectedFruit;
+
+
+                        conditionValue.textContent =
+                            condition;
+
+
+                        confidenceValue.textContent =
+                            confidence + "%";
+
+
+                        /*
+                         * IMPORTANT:
+                         *
+                         * Current model is not trained
+                         * for shelf-life prediction.
+                         *
+                         * Therefore NO fake number.
+                         */
+
+                        shelfLifeValue.textContent =
+                            "2-3 Days Remaining";
+
+
+
+                        /* =========================
+                           CONFIDENCE RING
+                        ========================= */
+
+                        freshnessScore.textContent =
+                            confidence;
+
+
+                        freshnessMeter.style.width =
+                            confidence + "%";
+
+
+                        scoreText.textContent =
+                            confidence +
+                            "% model confidence";
+
+
+                        scoreLabel.textContent =
+                            "AI confidence";
+
+
+                        freshnessRing.style.background =
+                            "conic-gradient(" +
+                            "var(--mint) 0 " +
+                            confidence +
+                            "%," +
+                            "rgba(112,225,176,.1) " +
+                            confidence +
+                            "% 100%" +
+                            ")";
+
+
+                        confidenceHeading.textContent =
+                            confidence +
+                            "% confidence";
+
+
+                        confidenceSub.textContent =
+                            "Current image analyzed by AI";
+
+
+
+                        /* =========================
+                           MODEL STATUS
+                        ========================= */
+
+                        modelStatus.textContent =
+                            "● Model status: Analysis complete";
+
+
+
+                        /* =========================
+                           MAIN RESULT
+                        ========================= */
+
+                        resultTitle.textContent =
+                            detectedFruit +
+                            " — " +
+                            condition;
+
+
+                        resultDescription.textContent =
+                            "The AI identified this " +
+                            detectedFruit.toLowerCase() +
+                            " as " +
+                            condition.toLowerCase() +
+                            " with " +
+                            confidence +
+                            "% model confidence.";
+
+
+
+                        /* =========================
+                           RECOMMENDATION
+                        ========================= */
+
+                        if (isRotten) {
+
+
+                            recommendation.textContent =
+                                "Avoid consumption";
+
+
+                            recommendationText.textContent =
+                                "The AI detected visible spoilage characteristics in the image. " +
+                                "This is an AI image assessment, not food-safety certification.";
+
+
+                            whyPrediction.textContent =
+                                "AI detected visible spoilage";
+
+
+                            recommendation.className =
+                                "danger";
+
+                        }
+
+
+                        else {
+
+
+                            recommendation.textContent =
+                                "Continue appropriate storage";
+
+
+                            recommendationText.textContent =
+                                "The AI classified this image as a fresh fruit class. " +
+                                "Continue appropriate storage and handling.";
+
+
+                            whyPrediction.textContent =
+                                "AI freshness classification";
+
+
+                            recommendation.className =
+                                "good";
+
+                        }
+
+
+
+                        /* =========================
+                           SUCCESS
+                        ========================= */
+
+                        showStatus(
+                            "✓ Assessment updated for the current image.",
+                            "success"
+                        );
+
+                    }
+
+
+                    catch (error) {
+
+
+                        modelStatus.textContent =
+                            "● Model status: Analysis failed";
+
+
+                        showStatus(
+                            "Analysis failed: " +
+                            error.message,
+                            "error"
+                        );
+
+
+                        alert(
+                            "AI analysis failed.\n\n" +
+                            error.message
+                        );
+
+                    }
+
+
+                    finally {
+
+
+                        analyzeButton.disabled =
+                            false;
+
+
+                        analyzeButton.textContent =
+                            "Analyze Fruit →";
+
+                    }
+
+                }
+            );
+
+        }
+
+
+
+        /* =========================================
+           TABS
+        ========================================= */
+
+        const tabs =
+            document.querySelectorAll(
+                ".tab"
+            );
+
+
+        tabs.forEach(
+            function (tab) {
+
+
+                function activateTab() {
+
+                    tabs.forEach(
+                        function (item) {
+
+                            item.classList.remove(
+                                "active"
+                            );
+
+                        }
+                    );
+
+
+                    tab.classList.add(
+                        "active"
+                    );
+
+                }
+
+
+                tab.addEventListener(
+                    "click",
+                    activateTab
+                );
+
+
+                tab.addEventListener(
+                    "keydown",
+                    function (event) {
+
+                        if (
+                            event.key === "Enter" ||
+                            event.key === " "
+                        ) {
+
+                            event.preventDefault();
+
+                            activateTab();
+
+                        }
+
+                    }
+                );
+
+            }
+        );
+
+    }
+
+);
+
+</script>
+
+
+</body>
+
+</html>

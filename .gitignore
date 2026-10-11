@@ -1,0 +1,18 @@
+# Python cache and environments
+__pycache__/
+*.pyc
+.venv/
+venv/
+env/
+
+# Training datasets - do not upload
+dataset/
+dataset_maturity/
+dataset_split/
+auto_labeled_dataset/
+auto_maturity_dataset/
+maturity_samples/
+
+# Generated training labels and temporary files
+auto_labels.csv
+auto_maturity_labels.csv
